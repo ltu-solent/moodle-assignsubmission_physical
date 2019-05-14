@@ -311,21 +311,20 @@ function assignsubmission_physical_default_username_values() {
 
 
 /**
- * Get the participant id which is used for blindmarking
+ * Get the user/student idnumber which is used for blindmarking
  *
  * @param  int $userid     The id of the user
  * @param  int $assignment The assignment id
  * @return string          The database record containing the particpant id
  */
-function assignsubmission_physical_get_participantid($userid, $assignment) {
+function assignsubmission_physical_get_studentid($userid, $assignment) {
     global $DB;
 
-    $sql = "SELECT id AS participantid
-              FROM {assign_user_mapping}
-             WHERE userid = ?
-               AND assignment = ?";
+    $sql = "SELECT idnumber AS studentid
+              FROM {user}
+             WHERE id = ?";
     if ($record = $DB->get_record_sql($sql, array('userid' => $userid, 'assignment' => $assignment), IGNORE_MISSING)) {
-        return $record->participantid;
+        return $record->studentid;
     }
     return '';
 }

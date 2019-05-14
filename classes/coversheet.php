@@ -859,7 +859,7 @@ EOD;
         $this->usernameformat = $username->name;
         $this->username       = $username->data;
         $this->studentname    = $this->user->firstname . ' ' . $this->user->lastname;
-        $this->participantid  = assignsubmission_physical_get_participantid($this->userid, $this->assignmentid);
+        $this->participantid  = assignsubmission_physical_get_studentid($this->userid, $this->assignmentid);
     }
 
 
@@ -922,6 +922,8 @@ EOD;
             $this->assignmenttype = get_string('group', 'assignsubmission_physical');
             $this->groupingname   = $this->usersubmissionstatus->submissiongroup->name;
             $this->groupid        = $this->usersubmissionstatus->submissiongroup->id;
+        } else {
+          $this->groupingname     = 'N/A';
         }
     }
 
@@ -1057,9 +1059,9 @@ EOD;
                   JOIN {course} co ON c.instanceid = co.id
                  WHERE c.contextlevel = ?
                    AND c.instanceid = ?
-                   AND r.id < ?
+                   AND r.id = ?
               ORDER BY r.sortorder ASC";
-        $result = $DB->get_records_sql($sql, array(50, $this->courseid, 5));
+        $result = $DB->get_records_sql($sql, array(50, $this->courseid, 15));
 
         $this->tutors = '';
         $i = 1;
