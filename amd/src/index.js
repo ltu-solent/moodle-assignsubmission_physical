@@ -1,4 +1,6 @@
 // Set the location select element as "required" if the user sets the assignment as a physical assignment.
+// SU_AMEND START - Assignment: Move element in focus beneath header
+//define([], function() {
 define(['jquery'], function() {
 
     document.addEventListener('invalid', function(e){ //scroll all the way up so that the input is visible
@@ -8,7 +10,7 @@ define(['jquery'], function() {
     document.addEventListener('change', function(e){
        $(e.target).removeClass("invalid")
     }, true);
-
+// SU_AMEND END
 
     function load() {
         document.getElementById("id_assignsubmission_physical_enabled").addEventListener("click", function() {
