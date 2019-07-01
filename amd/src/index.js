@@ -9,13 +9,15 @@ define(['jquery'], function() {
             }
         }, false);
     }
-    document.addEventListener('invalid', function(e){ //scroll all the way up so that the input is visible
+// SU_AMEND START - Assignment: Move element in focus beneath header
+    document.addEventListener('invalid', function(e){
        $(e.target).addClass("invalid");
        $('html, body').animate({scrollTop: $($(".invalid")[0]).offset().top - 80 }, 0);
     }, true);
     document.addEventListener('change', function(e){
        $(e.target).removeClass("invalid");
     }, true);
+//SU_AMEND END
 
     return {
         enhanceSettings: function() {
