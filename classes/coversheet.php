@@ -444,19 +444,17 @@ class coversheet extends \pdf {
             </style>
             <table>
                 <tr>
-                    <td class="font-medium font-bold text-center" colspan="12">
+                    <td class="font-medium font-bold" colspan="24">
                         <img src="$CFG->dirroot\mod\assign\submission\physical\pix\solent-university-logo.png" height="60px">
                     </td>
-                    <td class="font-medium font-bold text-center" colspan="36">
+                    <td class="font-medium font-bold" colspan="24">
                         <b>$this->headingdeclarationform</b><br />
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
+                <br>
                 <tr>
                     <td colspan="18" class="border-thin">
-                        <strong><span class="font-small">$this->headingmodulecode:</span></strong><br />
+                        <strong><span class="font-small">$this->headingmodulecode:</span></strong>
                         <span class="font-small inner-container">$this->courseshortcode</span>
                     </td>
                     <td colspan="30"></td>
