@@ -566,8 +566,7 @@ EOD;
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin addheight-xl" rowspan="3">
-                        <span class="font-small">
-                            <strong>$this->headingsubmissionstatement: </strong>
+                        <span>
                             $this->submissionstatement
                         </span>
                     </td>
@@ -837,16 +836,7 @@ EOD;
      * @return void
      */
     private function set_assignment_submission_statement() {
-        global $DB;
-
-        if ($record = $DB->get_record('config_plugins',
-                                      array('plugin' => 'assign', 'name' => 'submissionstatement'),
-                                      'value',
-                                      IGNORE_MISSING)) {
-            $this->submissionstatement = $record->value;
-        } else {
-            $this->submissionstatement = '';
-        }
+            $this->submissionstatement = get_string('statement', 'assignsubmission_physical');
     }
 
 

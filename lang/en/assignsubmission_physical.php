@@ -49,7 +49,7 @@ $string['daysbeforedeadline']     = ' days before the deadline';
 $string['declarationform']        = 'Assignment Submission & Declaration Form';
 $string['default']                = 'Enabled by default';
 $string['default_help']           = 'If set, this submission method will be enabled by default for all new assignments.';
-$string['descriptionofwork']      = 'Title / description of work';
+$string['descriptionofwork']      = 'Notes';
 $string['download']               = 'Download';
 $string['duedate']                = 'Due date';
 $string['email']                  = 'Email';
@@ -81,7 +81,7 @@ $string['moduletutors']           = 'Module tutors';
 $string['nameandemail']           = 'Name and email address';
 $string['nodraftsubmission']      = 'no draft submission';
 $string['onduedate']              = ' (on the due date)';
-$string['participantheading']     = 'Participant ID';
+$string['participantheading']     = 'Student ID';
 $string['pdfimage']               = 'image of a pdf document';
 $string['physicalsubmissionsettingsheader'] = 'Physical submission settings';
 $string['pluginname']             = 'Physical Submissions';
@@ -101,6 +101,9 @@ $string['studentname']            = 'Student name';
 $string['submissionlocation']     = 'Submission location';
 $string['submissionmessage']      = 'This assignment is a physical submission. Please take your coversheet to the submission location which is ' .
                                     'displayed on your assignment coversheet. Once the coversheet has been successfully scanned, this assignment shall be submitted.';
+$string['statement']              = 'This form should only be used for your own work and, where facts and ideas have been used from other sources, these sources must
+                                     be appropriately referenced. The University\'s academic handbook includes the definitions of all practices that will be deemed to constitute
+                                     academic misconduct.';                                    
 $string['submissionstatement']    = 'Submission statement';
 $string['submissiontype']         = 'Physical submission';
 $string['submitontime']           = 'Submit on time';
