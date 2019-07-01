@@ -465,17 +465,8 @@ class coversheet extends \pdf {
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="48" rowspan="2" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingmoduletutors:</strong> $this->tutors</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48" rowspan="2" class="border-thick">
-                        <strong><span class="font-small font-bold">$this->headingtutor: </span>
-                        </strong>&nbsp;
                     </td>
                 </tr>
                 <tr>
@@ -549,19 +540,13 @@ EOD;
 
         $content .= <<<EOD
                 <tr>
-                    <td colspan="22" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
-                    </td>
-                    <td colspan="26" class="border-thin">
-                        <span class="font-small"><strong>$this->headinggroupingname:</strong> $this->groupingname</span>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="24" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingstudentname:</strong> $this->studentname</span>
-                    </td>
-                    <td colspan="24" class="border-thin">
-                        <span class="font-small"><strong>$this->usernameformat:</strong> $this->username</span>
                     </td>
                 </tr>
                 <tr>
@@ -576,14 +561,6 @@ EOD;
                 </tr>
                 <tr>
                     <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="24" rowspan="2" class="border-thick addheight">
-                        <strong><span class="font-small font-bold">$this->headingsigned:</span></strong>
-                    </td>
-                    <td colspan="24" rowspan="2" class="border-thick addheight">
-                        <strong><span class="font-small font-bold">$this->headingdate:</span></strong>
-                    </td>
                 </tr>
                 <tr>
                     <td colspan="24"></td>

@@ -75,9 +75,9 @@ $string['locationname']           = 'Submission locations';
 $string['locationrequired']       = 'The location for the submision is required';
 $string['locations']              = 'Locations';
 $string['locationsettings']       = 'locationsettings';
-$string['modulecode']             = 'Module code';
-$string['moduletitle']            = 'Module title';
-$string['moduletutors']           = 'Module tutors';
+$string['modulecode']             = 'Unit code';
+$string['moduletitle']            = 'Unit name';
+$string['moduletutors']           = 'Unit leader';
 $string['nameandemail']           = 'Name and email address';
 $string['nodraftsubmission']      = 'no draft submission';
 $string['onduedate']              = ' (on the due date)';
@@ -103,7 +103,7 @@ $string['submissionmessage']      = 'This assignment is a physical submission. P
                                     'displayed on your assignment coversheet. Once the coversheet has been successfully scanned, this assignment shall be submitted.';
 $string['statement']              = 'This form should only be used for your own work and, where facts and ideas have been used from other sources, these sources must
                                      be appropriately referenced. The University\'s academic handbook includes the definitions of all practices that will be deemed to constitute
-                                     academic misconduct.';                                    
+                                     academic misconduct.';
 $string['submissionstatement']    = 'Submission statement';
 $string['submissiontype']         = 'Physical submission';
 $string['submitontime']           = 'Submit on time';
