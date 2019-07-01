@@ -527,25 +527,25 @@ class coversheet extends \pdf {
                 </tr>
 EOD;
 
-        if ($this->isblindmarking === true) {
-            $content .= <<<EOD
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
-                        <span class=""><strong>$this->headingblindmarking</strong></span><br />
-                        <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-EOD;
-        }
+//         if ($this->isblindmarking === true) {
+//             $content .= <<<EOD
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
+//                         <span class=""><strong>$this->headingblindmarking</strong></span><br />
+//                         <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
+//                     </td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+// EOD;
+//         }
 
         $content .= <<<EOD
                 <tr>
