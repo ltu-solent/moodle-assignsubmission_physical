@@ -360,6 +360,7 @@ class coversheet extends \pdf {
      * @return string   Returns the pdf content as a string
      */
     private function generate_pdf_content() {
+      global $CFG;
         $content = <<<EOD
             <style>
                 .font-small {
@@ -443,10 +444,11 @@ class coversheet extends \pdf {
             </style>
             <table>
                 <tr>
-                    <td class="font-medium font-bold text-center" colspan="48">
-                        $this->headingcoventryuniversity<br />
-                        $this->headingdeclarationform<br />
-                        $this->headingcompletesections
+                    <td class="font-medium font-bold text-center" colspan="12">
+                        <img src="$CFG->dirroot\mod\assign\submission\physical\pix\solent-university-logo.png" height="60px">
+                    </td>
+                    <td class="font-medium font-bold text-center" colspan="36">
+                        <b>$this->headingdeclarationform</b><br />
                     </td>
                 </tr>
                 <tr>
