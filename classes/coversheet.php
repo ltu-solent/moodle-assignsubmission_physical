@@ -483,7 +483,9 @@ class coversheet extends \pdf {
                 <tr class="description-header">
                     <td colspan="48" rowspan="2" class="border-thin description">
                         <strong><span class="font-small">$this->headingassignmentdescription:</span></strong>
-                        <span class="font-small">$this->assignmentdescription</span>
+                        <span class="font-small">
+                          $this->assignmentdescription
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -538,23 +540,20 @@ EOD;
 // EOD;
 //         }
 
-        $content .= <<<EOD
-                <tr>
-                    <td colspan="48" class="border-thin">
-                        <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
-                    </td>
-                </tr>
+        $content .=
+                // <tr>
+                //     <td colspan="48" class="border-thin">
+                //         <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
+                //     </td>
+                // </tr>
+                <<<EOD
                 <tr>
                     <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingstudentname:</strong> $this->studentname</span>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="48" class="border-thin addheight-xl" rowspan="3">
-                        <span>
-                            $this->submissionstatement
-                        </span>
-                    </td>
+                    <td colspan="48" class="border-thin addheight-l" rowspan="3"><span>$this->submissionstatement</span></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
