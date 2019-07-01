@@ -444,20 +444,18 @@ class coversheet extends \pdf {
             </style>
             <table>
                 <tr>
-                    <td class="font-medium font-bold" colspan="24">
-                        <img src="$CFG->dirroot\mod\assign\submission\physical\pix\solent-university-logo.png" height="60px">
+                    <td class="font-medium font-bold" colspan="23">
+                        <img src="/mod/assign/submission/physical/pix/solent-university-logo.png" height="60px">
                     </td>
-                    <td class="font-medium font-bold" colspan="24">
+                    <td class="font-medium font-bold" colspan="25">
                         <b>$this->headingdeclarationform</b><br />
                     </td>
                 </tr>
                 <br>
                 <tr>
                     <td colspan="18" class="border-thin">
-                        <strong><span class="font-small">$this->headingmodulecode:</span></strong>
-                        <span class="font-small inner-container">$this->courseshortcode</span>
+                        <span class="font-bold font-small"><strong>$this->headingmodulecode:</strong> $this->courseshortcode</span>
                     </td>
-                    <td colspan="30"></td>
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
@@ -473,12 +471,9 @@ class coversheet extends \pdf {
                     <td colspan="48"></td>
                 </tr>
                 <tr>
-                    <td colspan="48" rowspan="2" class="border-thin">
+                    <td colspan="48" rowspan="1" class="border-thin">
                         <span class="font-small"><strong>$this->headingassignmenttitle:</strong> $this->assignmenttitle</span>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
                 </tr>
                 <tr class="description-header">
                     <td colspan="48" rowspan="2" class="border-thin description">
@@ -506,6 +501,9 @@ class coversheet extends \pdf {
                     <td colspan="48" rowspan="3" class="border-thin addheight-md">
                         <strong><span class="font-small font-bold">$this->headingdescriptionofwork: </span></strong>
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="48"></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
