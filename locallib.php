@@ -181,6 +181,8 @@ class assign_submission_physical extends assign_submission_plugin {
         if (has_capability('assignsubmission/barcode:scan', $context)) {
             $url = new moodle_url('/mod/assign/submission/physical/grading.php', ['id' => $id]);
             redirect($url);
+        } else {
+            echo('<div class="assign_physical"></div>');
         }
     }
 

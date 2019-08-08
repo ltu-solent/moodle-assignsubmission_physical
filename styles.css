@@ -37,3 +37,46 @@
 .assignsubmission-physical-vertical-breathe-sm {
   margin: 8px 0;
 }
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 {
+  visibility: hidden;
+}
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .alert:after {
+  visibility: visible;
+  content: 'You need to print a coversheet for this assignment';
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton {
+  visibility: visible;
+}
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:after {
+    content: 'Get coversheet';
+    color: #fff;
+    position: absolute;
+    margin-left: -85px;
+}
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover::after {
+    color: #425B6C !important;
+}
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn {
+    color: #425B6C !important;
+    width: 125px;
+    margin-top: -180px;
+}
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover {
+    color: #fff !important;
+}
+
+@media screen and (max-width: 500px) {
+  .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn {
+    margin-top: -400px
+  }
+}
