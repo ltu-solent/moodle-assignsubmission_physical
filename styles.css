@@ -58,7 +58,8 @@
     content: 'Get coversheet';
     color: #fff;
     position: absolute;
-    margin-left: -85px;
+    left: 0;
+    right: 0;
 }
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover::after {
