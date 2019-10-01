@@ -38,7 +38,7 @@
   margin: 8px 0;
 }
 
-.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 {
+/* .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 {
   visibility: hidden;
 }
 
@@ -48,14 +48,14 @@
   position: absolute;
   left: 0;
   right: 0;
-}
+} */
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton {
   visibility: visible;
 }
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:after {
-    content: 'Get coversheet';
+    content: 'Get coversheet/Upload submission';
     color: #fff;
     position: absolute;
     left: 0;
@@ -68,8 +68,7 @@
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn {
     color: #425B6C !important;
-    width: 125px;
-    margin-top: -180px;
+    width: 275px;
 }
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover {
