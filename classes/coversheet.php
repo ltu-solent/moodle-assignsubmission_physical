@@ -360,6 +360,7 @@ class coversheet extends \pdf {
      * @return string   Returns the pdf content as a string
      */
     private function generate_pdf_content() {
+      global $CFG;
         $content = <<<EOD
             <style>
                 .font-small {
@@ -443,21 +444,18 @@ class coversheet extends \pdf {
             </style>
             <table>
                 <tr>
-                    <td class="font-medium font-bold text-center" colspan="48">
-                        $this->headingcoventryuniversity<br />
-                        $this->headingdeclarationform<br />
-                        $this->headingcompletesections
+                    <td class="font-medium font-bold" colspan="23">
+                        <img src="/mod/assign/submission/physical/pix/solent-university-logo.png" height="60px">
+                    </td>
+                    <td class="font-medium font-bold" colspan="25">
+                        <b>$this->headingdeclarationform</b><br />
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
+                <br>
                 <tr>
                     <td colspan="18" class="border-thin">
-                        <strong><span class="font-small">$this->headingmodulecode:</span></strong><br />
-                        <span class="font-small inner-container">$this->courseshortcode</span>
+                        <span class="font-bold font-small"><strong>$this->headingmodulecode:</strong> $this->courseshortcode</span>
                     </td>
-                    <td colspan="30"></td>
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
@@ -465,7 +463,7 @@ class coversheet extends \pdf {
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="48" rowspan="2" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingmoduletutors:</strong> $this->tutors</span>
                     </td>
                 </tr>
@@ -473,26 +471,16 @@ class coversheet extends \pdf {
                     <td colspan="48"></td>
                 </tr>
                 <tr>
-                    <td colspan="48" rowspan="2" class="border-thick">
-                        <strong><span class="font-small font-bold">$this->headingtutor: </span>
-                        </strong>&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48" rowspan="2" class="border-thin">
+                    <td colspan="48" rowspan="1" class="border-thin">
                         <span class="font-small"><strong>$this->headingassignmenttitle:</strong> $this->assignmenttitle</span>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
                 </tr>
                 <tr class="description-header">
                     <td colspan="48" rowspan="2" class="border-thin description">
                         <strong><span class="font-small">$this->headingassignmentdescription:</span></strong>
-                        <span class="font-small">$this->assignmentdescription</span>
+                        <span class="font-small">
+                          $this->assignmentdescription
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -521,70 +509,55 @@ class coversheet extends \pdf {
                     <td colspan="48"></td>
                 </tr>
                 <tr>
+                    <td colspan="48"></td>
+                </tr>
+                <tr>
                     <td colspan="48" class="border-thin">
                         <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->participantid
                     </td>
                 </tr>
 EOD;
 
-        if ($this->isblindmarking === true) {
-            $content .= <<<EOD
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
-                        <span class=""><strong>$this->headingblindmarking</strong></span><br />
-                        <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-EOD;
-        }
+//         if ($this->isblindmarking === true) {
+//             $content .= <<<EOD
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
+//                         <span class=""><strong>$this->headingblindmarking</strong></span><br />
+//                         <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
+//                     </td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+// EOD;
+//         }
 
-        $content .= <<<EOD
+        $content .=
+                // <tr>
+                //     <td colspan="48" class="border-thin">
+                //         <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
+                //     </td>
+                // </tr>
+                <<<EOD
                 <tr>
-                    <td colspan="22" class="border-thin">
-                        <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
-                    </td>
-                    <td colspan="26" class="border-thin">
-                        <span class="font-small"><strong>$this->headinggroupingname:</strong> $this->groupingname</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="24" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingstudentname:</strong> $this->studentname</span>
                     </td>
-                    <td colspan="24" class="border-thin">
-                        <span class="font-small"><strong>$this->usernameformat:</strong> $this->username</span>
-                    </td>
                 </tr>
                 <tr>
-                    <td colspan="48" class="border-thin addheight-xl" rowspan="3">
-                        <span class="font-small">
-                            <strong>$this->headingsubmissionstatement: </strong>
-                            $this->submissionstatement
-                        </span>
-                    </td>
+                    <td colspan="48" class="border-thin addheight-l" rowspan="3"><span>$this->submissionstatement</span></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="24" rowspan="2" class="border-thick addheight">
-                        <strong><span class="font-small font-bold">$this->headingsigned:</span></strong>
-                    </td>
-                    <td colspan="24" rowspan="2" class="border-thick addheight">
-                        <strong><span class="font-small font-bold">$this->headingdate:</span></strong>
-                    </td>
                 </tr>
                 <tr>
                     <td colspan="24"></td>
@@ -837,16 +810,7 @@ EOD;
      * @return void
      */
     private function set_assignment_submission_statement() {
-        global $DB;
-
-        if ($record = $DB->get_record('config_plugins',
-                                      array('plugin' => 'assign', 'name' => 'submissionstatement'),
-                                      'value',
-                                      IGNORE_MISSING)) {
-            $this->submissionstatement = $record->value;
-        } else {
-            $this->submissionstatement = '';
-        }
+            $this->submissionstatement = get_string('statement', 'assignsubmission_physical');
     }
 
 
