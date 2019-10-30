@@ -488,7 +488,7 @@ class coversheet extends \pdf {
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
-                        <span class="font-small"><strong>$this->headingsubmissionlocation: </strong>$this->location</span><br />
+                        <span class="font-small"><strong>$this->headingsubmissionlocation: </strong>$this->location</span><br>
                         <span class="font-small"> $this->locationinstructions</span>
                     </td>
                 </tr>
@@ -513,7 +513,7 @@ class coversheet extends \pdf {
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
-                        <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->participantid
+                        <span class="font-small"><strong>$this->headingparticipant: </strong>$this->participantid</span>
                     </td>
                 </tr>
 EOD;
@@ -551,7 +551,7 @@ EOD;
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="48" class="border-thin addheight-l" rowspan="3"><span>$this->submissionstatement</span></td>
+                    <td colspan="48" class="border-thin" rowspan="1"><span class="font-small">$this->submissionstatement</span></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
