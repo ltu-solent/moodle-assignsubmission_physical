@@ -93,7 +93,7 @@ class custom_summary_grading_form extends \mod_assign_renderer {
         $o .= $this->output->container_end();
 
         // Close the container and insert a spacer.
-        //$o .= $this->output->container_end();
+        $o .= $this->output->container_end();
         $o .= '</center>';
 
         return $o;
@@ -216,7 +216,6 @@ class custom_summary_grading_form extends \mod_assign_renderer {
         // All done - write the table.
         $o .= html_writer::table($t);
         $o .= $this->output->box_end();
-        $o .= $this->output->container_end();
         return $o;
     }
 
