@@ -1,3 +1,12 @@
+#assignsubmission-physical-submission + #form_group {
+    display: none;
+}
+
+
+#nosavebutton {
+    display: none;
+}
+
 .btn.assignsubmission-physical-btn {
   display: block;
   margin: 1rem auto;
@@ -38,7 +47,9 @@
   margin: 8px 0;
 }
 
-/* .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 {
+/*new stuff*/
+
+/*.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 {
   visibility: hidden;
 }
 
@@ -48,31 +59,40 @@
   position: absolute;
   left: 0;
   right: 0;
-} */
+}
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton {
   visibility: visible;
+}*/
+
+
+.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary {
+    content: 'Get coversheet';
+    color: #fff;
+    /*color: red;*/
+    /*position: absolute;*/
+    margin-left: -85px;
+
 }
 
-.assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:after {
-    content: 'Get coversheet/Upload submission';
-    color: #fff;
-    position: absolute;
-    left: 0;
-    right: 0;
-}
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover::after {
     color: #425B6C !important;
 }
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn {
-    color: #425B6C !important;
-    width: 275px;
+    /*This is the edit submissions button*/
+    /* color: #425B6C !important; */
+    width: 125px;
+    content: 'This';
+    /*margin-top: -180px;*/
 }
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover {
+    /*Edit submissions button hover*/
     color: #fff !important;
+    content: 'No this' !important;
+
 }
 
 @media screen and (max-width: 500px) {

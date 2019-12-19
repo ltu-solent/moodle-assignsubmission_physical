@@ -302,6 +302,11 @@ class coversheet extends \pdf {
      * @var object
      */
     private $usersubmissionstatus;
+    /**
+    * The Unit code, Assignment title, student name
+    * @var string
+    */
+    protected $details;
 
 
     /**
@@ -328,6 +333,7 @@ class coversheet extends \pdf {
         $this->set_headings();
         $this->set_blindmarking();
         $this->set_tutors();
+        $this->details = $this->courseshortcode . ', ' . $this->coursetitle;
         $this->pdf = new \pdf;
     }
 
@@ -337,7 +343,9 @@ class coversheet extends \pdf {
      * @return void
      */
     public function display_1d_pdf() {
+
         $this->pdf->AddFont('helvetica');
+        $this->pdf->SetFont('helvetica', '' ,'10', '');
         $this->pdf->setPrintHeader(false);
         $this->pdf->setPrintFooter(false);
         $this->pdf->AddPage();
@@ -351,9 +359,82 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->Output($this->studentname . '_' . $this->barcode . '.pdf', $this->defaultformat);
-    }
+// SU_AMEND START - Assign submission: Extra barcodes
+        //$this->pdf->Output($this->studentname . '_' . $this->barcode . '.pdf', $this->defaultformat);
+        $this->style = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => '2, 2, 2, 2', 'phase' => 10, 'color' => array(169, 169, 169));
+        $this->pdf->Line(9, 172, 200, 172, $this->style);
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '10',
+            $y = '180',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
 
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '110',
+            $y = '180',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '10',
+            $y = '212',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '110',
+            $y = '212',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '10',
+            $y = '244',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+15, $this->studentname);
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '110',
+            $y = '244',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        $this->pdf->Output($this->studentname . '_' . $this->barcode . '.pdf');
+// SU_AMEND END
+
+    }
 
     /**
      * Generate the pdf content
@@ -361,10 +442,11 @@ class coversheet extends \pdf {
      */
     private function generate_pdf_content() {
       global $CFG;
+
         $content = <<<EOD
             <style>
                 .font-small {
-                    font-size:9px;
+                    font-size:11px;
                     text-align:left;
                 }
                 .font-blindmarking {
@@ -445,7 +527,7 @@ class coversheet extends \pdf {
             <table>
                 <tr>
                     <td class="font-medium font-bold" colspan="23">
-                        <img src="/mod/assign/submission/physical/pix/solent-university-logo.png" height="60px">
+                        <img src="/mod/assign/submission/physical/pix/solent-university-logo.png" height="80px">
                     </td>
                     <td class="font-medium font-bold" colspan="25">
                         <b>$this->headingdeclarationform</b><br />
@@ -475,20 +557,12 @@ class coversheet extends \pdf {
                         <span class="font-small"><strong>$this->headingassignmenttitle:</strong> $this->assignmenttitle</span>
                     </td>
                 </tr>
-                <tr class="description-header">
-                    <td colspan="48" rowspan="2" class="border-thin description">
-                        <strong><span class="font-small">$this->headingassignmentdescription:</span></strong>
-                        <span class="font-small">
-                          $this->assignmentdescription
-                        </span>
-                    </td>
-                </tr>
                 <tr>
                     <td colspan="48"></td>
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
-                        <span class="font-small"><strong>$this->headingsubmissionlocation: </strong>$this->location</span><br>
+                        <span class="font-small"><strong>$this->headingsubmissionlocation: </strong>$this->location</span><br />
                         <span class="font-small"> $this->locationinstructions</span>
                     </td>
                 </tr>
@@ -513,7 +587,7 @@ class coversheet extends \pdf {
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
-                        <span class="font-small"><strong>$this->headingparticipant: </strong>$this->participantid</span>
+                        <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->participantid
                     </td>
                 </tr>
 EOD;
@@ -551,20 +625,23 @@ EOD;
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="48" class="border-thin" rowspan="1"><span class="font-small">$this->submissionstatement</span></td>
+                    <td colspan="48" class="border-thin addheight-l font-small" rowspan="3"><span>$this->submissionstatement</span></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
                 </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
+
                 <tr>
                     <td colspan="24"></td>
                     <td colspan="24"></td>
                 </tr>
             </table>
+
+
+
+
 EOD;
+
         return $content;
     }
 
@@ -579,6 +656,7 @@ EOD;
         $doc->setPrintFooter(false);
         $doc->AddPage();
         $doc->writeHTML($this->pdf_example_data(), true, false, false, false, 'L');
+
         $doc->write1DBarcode(7933528155335,
             'CODABAR',
             $x = '72',

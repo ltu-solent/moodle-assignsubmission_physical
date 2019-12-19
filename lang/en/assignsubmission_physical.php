@@ -87,6 +87,7 @@ $string['physicalsubmissionsettingsheader'] = 'Physical submission settings';
 $string['pluginname']             = 'Physical Submissions';
 $string['privacy:metadata']       = 'The physical submission plugin does not store any personal data.';
 $string['preview']                = 'Preview';
+$string['print']                  = 'Generate coversheet';
 $string['printcoversheet']        = 'Print coversheet';
 $string['printsubmissionbarcodes'] = 'Print submission barcodes';
 $string['printsubmissionpageheading'] = 'Print all submission details';

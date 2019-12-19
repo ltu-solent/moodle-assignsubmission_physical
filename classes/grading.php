@@ -57,7 +57,11 @@ class custom_summary_grading_form extends \mod_assign_renderer {
         $o = '';
         $o .= $this->get_base_grading_table($summary);
 
+// SSU AMEND START
         // Link to the barcode submission page for staff members.
+        // Don't display the scan button if the cutoff date has passed
+        if ($summary->cutoffdate === "0" || time() < intval($summary->cutoffdate)) {
+// SSU AMEND END
         $o .= '<center class="assignsubmission-physical-vertical-breathe">';
         $urlparams = array('id' => $summary->coursemoduleid, 'action' => 'scanning');
         $url = new moodle_url('/local/barcode/submissions.php', $urlparams);
@@ -65,7 +69,9 @@ class custom_summary_grading_form extends \mod_assign_renderer {
                 get_string('scansubmissions', 'assignsubmission_physical') .
               '</a> ';
         $o .= '</center>';
-
+// SSU AMEND START
+        }
+// SSU AMEND END
         // Link to the printable barcode submission page for staff members.
         $o .= '<center class="assignsubmission-physical-vertical-breathe-sm">';
         $urlparams = array('id' => $summary->coursemoduleid);
@@ -87,7 +93,7 @@ class custom_summary_grading_form extends \mod_assign_renderer {
         $o .= $this->output->container_end();
 
         // Close the container and insert a spacer.
-        $o .= $this->output->container_end();
+        //$o .= $this->output->container_end();
         $o .= '</center>';
 
         return $o;
@@ -210,7 +216,7 @@ class custom_summary_grading_form extends \mod_assign_renderer {
         // All done - write the table.
         $o .= html_writer::table($t);
         $o .= $this->output->box_end();
-
+        $o .= $this->output->container_end();
         return $o;
     }
 
