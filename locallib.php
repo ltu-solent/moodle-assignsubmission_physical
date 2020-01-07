@@ -22,9 +22,12 @@
  * @author    Dez Glidden <dez.glidden@catalyst-eu.net>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+global $PAGE;
 
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
+$PAGE->requires->js_call_amd('assignsubmission_physical/hide_save_button', 'init');
+$PAGE->requires->js_call_amd('assignsubmission_physical/get_coversheet_button', 'init');
 require_once('lib.php');
 
 /**
@@ -51,11 +54,21 @@ class assign_submission_physical extends assign_submission_plugin {
      */
     public function get_settings(MoodleQuickForm $mform) {
         global $DB, $PAGE;
+        
+        // disable other types of submission if physical is selected
+        // SSU_AMEND START		
+        $mform->disabledIf('assignsubmission_file_enabled', 'assignsubmission_physical_enabled', 'checked');				
+        $mform->disabledIf('assignsubmission_mahara_enabled', 'assignsubmission_physical_enabled', 'checked');				
+        $mform->disabledIf('assignsubmission_onlinetext_enabled', 'assignsubmission_physical_enabled', 'checked');
+        $mform->disabledIf('assignsubmission_helixassign_enabled', 'assignsubmission_physical_enabled', 'checked');	
+        // SSU_AMEND END
 
         $PAGE->requires->js_call_amd('assignsubmission_physical/index', 'enhanceSettings');
 
         $conditions = array('plugin' => 'assignsubmission_physical');
         $records    = $DB->get_records('config_plugins', $conditions);
+    
+      
         // Set the initial location and day release settings.
         foreach ($records as $key => $value) {
             if ($records[$key]->name === 'locationsettings') {
@@ -95,6 +108,9 @@ class assign_submission_physical extends assign_submission_plugin {
         } else {
             $selectdays->setSelected($dayrelease);
         }
+        
+
+
     }
 
 
@@ -181,12 +197,14 @@ class assign_submission_physical extends assign_submission_plugin {
         if (has_capability('assignsubmission/barcode:scan', $context)) {
             $url = new moodle_url('/mod/assign/submission/physical/grading.php', ['id' => $id]);
             redirect($url);
+        } else {
+            echo('<div class="assign_physical"></div>');
         }
     }
 
 
     /**
-     * Confirm the lastest submission has been submitted
+     * Confirm the latest submission has been submitted
      * @param  int $assignmentid    The id of assignment to check
      * @param  string $groupid      The id of group to check if set
      * @return mixed|boolean        Returns record if the latest submission is submitted, false if not
@@ -232,7 +250,7 @@ class assign_submission_physical extends assign_submission_plugin {
      */
     public function get_form_elements_for_user($submissionorgrade, MoodleQuickForm $mform, stdClass $data, $userid) {
         global $CFG;
-
+      
         $id               = optional_param('id', 0, PARAM_INT);
         // Calculate the release date.
         $days             = $this->get_config('dayrelease');
@@ -265,12 +283,14 @@ class assign_submission_physical extends assign_submission_plugin {
             $mform->addElement('html', '<div class="assignsubmission-physical-block-center assignsubmission-physical-vertical-breathe assignsubmission-physical-buttons">');
             $mform->addElement('html',
                                "<a href=\"$CFG->wwwroot/mod/assign/submission/physical/coversheet.php" .
-                               "?id=$id&submission=$submissionorgrade->id&format=D\" class=\"btn btn-primary assignsubmission-physical-btn\" download>" .
-                               get_string('download', 'assignsubmission_physical') . "</a>");
-            $mform->addElement('html',
-                               "<a href=\"$CFG->wwwroot/mod/assign/submission/physical/coversheet.php" .
-                               "?id=$id&submission=$submissionorgrade->id&format=I\" class=\"btn btn-secondary assignsubmission-physical-btn\"" .
-                               "target=\"_blank\">" . get_string('preview', 'assignsubmission_physical') . "</a>");
+                               "?id=$id&submission=$submissionorgrade->id&format=\" class=\"btn btn-primary assignsubmission-physical-btn\" target=\"_blank\">" .
+                               get_string('print', 'assignsubmission_physical') . "</a>");
+            
+// Removing 'Preview' button as it's confusing            
+//            $mform->addElement('html',
+//                               "<a href=\"$CFG->wwwroot/mod/assign/submission/physical/coversheet.php" .
+//                               "?id=$id&submission=$submissionorgrade->id&format=I\" class=\"btn btn-secondary assignsubmission-physical-btn\"" .
+//                               "target=\"_blank\">" . get_string('preview', 'assignsubmission_physical') . "</a>");
             $mform->addElement('html', '</div>');
         } else {
             $mform->addElement('html',

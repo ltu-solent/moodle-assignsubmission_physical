@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018092801;
+$plugin->version   = 2018092840;
 $plugin->requires  = 2017111300; // Moodle 3.4.
 $plugin->component = 'assignsubmission_physical';
 $plugin->maturity  = MATURITY_ALPHA;

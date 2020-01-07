@@ -53,6 +53,7 @@ $assign = new \assignsubmission_physical\physical_assign($context, $cm, $course)
 if (! $submission = $assign->get_user_submission($USER->id, false)) {
     $submission = $assign->get_user_submission($USER->id, true);
 }
+
 $coversheet = new \assignsubmission_physical\coversheet($assign, $USER, $submission, $format);
 
 // Log the event that the user viewed the submmission details.

@@ -58,14 +58,17 @@ class custom_summary_grading_form extends \mod_assign_renderer {
         $o .= $this->get_base_grading_table($summary);
 
         // Link to the barcode submission page for staff members.
-        $o .= '<center class="assignsubmission-physical-vertical-breathe">';
-        $urlparams = array('id' => $summary->coursemoduleid, 'action' => 'scanning');
-        $url = new moodle_url('/local/barcode/submissions.php', $urlparams);
-        $o .= '<a href="' . $url . '" class="btn btn-secondary">' .
-                get_string('scansubmissions', 'assignsubmission_physical') .
-              '</a> ';
-        $o .= '</center>';
-
+        // Don't display the scan button if the cutoff date has passed
+        // SSU AMEND START
+        if ($summary->cutoffdate === "0" || time() < intval($summary->cutoffdate)) { // SSU AMEND END
+            $o .= '<center class="assignsubmission-physical-vertical-breathe">';
+            $urlparams = array('id' => $summary->coursemoduleid, 'action' => 'scanning');
+            $url = new moodle_url('/local/barcode/submissions.php', $urlparams);
+            $o .= '<a href="' . $url . '" class="btn btn-secondary">' .
+                    get_string('scansubmissions', 'assignsubmission_physical') .
+                  '</a> ';
+            $o .= '</center>';
+        }
         // Link to the printable barcode submission page for staff members.
         $o .= '<center class="assignsubmission-physical-vertical-breathe-sm">';
         $urlparams = array('id' => $summary->coursemoduleid);

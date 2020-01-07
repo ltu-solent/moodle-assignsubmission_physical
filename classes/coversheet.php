@@ -302,6 +302,11 @@ class coversheet extends \pdf {
      * @var object
      */
     private $usersubmissionstatus;
+    /**
+    * The Unit code, Assignment title, student name
+    * @var string
+    */
+    protected $details;
 
 
     /**
@@ -328,6 +333,7 @@ class coversheet extends \pdf {
         $this->set_headings();
         $this->set_blindmarking();
         $this->set_tutors();
+        $this->details = $this->courseshortcode . ', ' . $this->coursetitle;
         $this->pdf = new \pdf;
     }
 
@@ -337,7 +343,9 @@ class coversheet extends \pdf {
      * @return void
      */
     public function display_1d_pdf() {
+        
         $this->pdf->AddFont('helvetica');
+        $this->pdf->SetFont('helvetica', '' ,'10', '');
         $this->pdf->setPrintHeader(false);
         $this->pdf->setPrintFooter(false);
         $this->pdf->AddPage();
@@ -351,19 +359,93 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->Output($this->studentname . '_' . $this->barcode . '.pdf', $this->defaultformat);
+        // Extra barcodes at the bottom of the form
+        $this->style = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => '2, 2, 2, 2', 'phase' => 10, 'color' => array(169, 169, 169));
+        $this->pdf->Line(9, 172, 200, 172, $this->style);
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '10',
+            $y = '180',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname); 
+       
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '110',
+            $y = '180',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '10',
+            $y = '212',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '110',
+            $y = '212',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '10',
+            $y = '244',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+15, $this->studentname);        
+        $this->pdf->write1DBarcode(
+            $this->barcode,
+            'CODABAR',
+            $x = '110',
+            $y = '244',
+            $w = '300',
+            $h = '7',
+            $xres = '',
+            array('text' => true));
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        
+        $this->pdf->Output($this->studentname . '_' . $this->barcode . '.pdf');
+             
     }
-
 
     /**
      * Generate the pdf content
      * @return string   Returns the pdf content as a string
      */
     private function generate_pdf_content() {
+      global $CFG;
+      
         $content = <<<EOD
             <style>
                 .font-small {
-                    font-size:9px;
+                    font-size:11px;
                     text-align:left;
                 }
                 .font-blindmarking {
@@ -443,21 +525,18 @@ class coversheet extends \pdf {
             </style>
             <table>
                 <tr>
-                    <td class="font-medium font-bold text-center" colspan="48">
-                        $this->headingcoventryuniversity<br />
-                        $this->headingdeclarationform<br />
-                        $this->headingcompletesections
+                    <td class="font-medium font-bold" colspan="23">
+                        <img src="/mod/assign/submission/physical/pix/solent-university-logo.png" height="80px">
+                    </td>
+                    <td class="font-medium font-bold" colspan="25">
+                        <b>$this->headingdeclarationform</b><br />
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
+                <br>
                 <tr>
                     <td colspan="18" class="border-thin">
-                        <strong><span class="font-small">$this->headingmodulecode:</span></strong><br />
-                        <span class="font-small inner-container">$this->courseshortcode</span>
+                        <span class="font-bold font-small"><strong>$this->headingmodulecode:</strong> $this->courseshortcode</span>
                     </td>
-                    <td colspan="30"></td>
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
@@ -465,7 +544,7 @@ class coversheet extends \pdf {
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="48" rowspan="2" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingmoduletutors:</strong> $this->tutors</span>
                     </td>
                 </tr>
@@ -473,26 +552,8 @@ class coversheet extends \pdf {
                     <td colspan="48"></td>
                 </tr>
                 <tr>
-                    <td colspan="48" rowspan="2" class="border-thick">
-                        <strong><span class="font-small font-bold">$this->headingtutor: </span>
-                        </strong>&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48" rowspan="2" class="border-thin">
+                    <td colspan="48" rowspan="1" class="border-thin">
                         <span class="font-small"><strong>$this->headingassignmenttitle:</strong> $this->assignmenttitle</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr class="description-header">
-                    <td colspan="48" rowspan="2" class="border-thin description">
-                        <strong><span class="font-small">$this->headingassignmentdescription:</span></strong>
-                        <span class="font-small">$this->assignmentdescription</span>
                     </td>
                 </tr>
                 <tr>
@@ -521,77 +582,65 @@ class coversheet extends \pdf {
                     <td colspan="48"></td>
                 </tr>
                 <tr>
+                    <td colspan="48"></td>
+                </tr>
+                <tr>
                     <td colspan="48" class="border-thin">
                         <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->participantid
                     </td>
                 </tr>
 EOD;
 
-        if ($this->isblindmarking === true) {
-            $content .= <<<EOD
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
-                        <span class=""><strong>$this->headingblindmarking</strong></span><br />
-                        <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-EOD;
-        }
+//         if ($this->isblindmarking === true) {
+//             $content .= <<<EOD
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
+//                         <span class=""><strong>$this->headingblindmarking</strong></span><br />
+//                         <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
+//                     </td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+//                 <tr>
+//                     <td colspan="48"></td>
+//                 </tr>
+// EOD;
+//         }
 
-        $content .= <<<EOD
+        $content .=
+                // <tr>
+                //     <td colspan="48" class="border-thin">
+                //         <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
+                //     </td>
+                // </tr>
+                <<<EOD
                 <tr>
-                    <td colspan="22" class="border-thin">
-                        <span class="font-small"><strong>$this->headingassessmenttype:</strong> $this->assignmenttype</span>
-                    </td>
-                    <td colspan="26" class="border-thin">
-                        <span class="font-small"><strong>$this->headinggroupingname:</strong> $this->groupingname</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="24" class="border-thin">
+                    <td colspan="48" class="border-thin">
                         <span class="font-small"><strong>$this->headingstudentname:</strong> $this->studentname</span>
                     </td>
-                    <td colspan="24" class="border-thin">
-                        <span class="font-small"><strong>$this->usernameformat:</strong> $this->username</span>
-                    </td>
                 </tr>
                 <tr>
-                    <td colspan="48" class="border-thin addheight-xl" rowspan="3">
-                        <span class="font-small">
-                            <strong>$this->headingsubmissionstatement: </strong>
-                            $this->submissionstatement
-                        </span>
-                    </td>
+                    <td colspan="48" class="border-thin addheight-l font-small" rowspan="3"><span>$this->submissionstatement</span></td>
                 </tr>
                 <tr>
                     <td colspan="48"></td>
                 </tr>
-                <tr>
-                    <td colspan="48"></td>
-                </tr>
-                <tr>
-                    <td colspan="24" rowspan="2" class="border-thick addheight">
-                        <strong><span class="font-small font-bold">$this->headingsigned:</span></strong>
-                    </td>
-                    <td colspan="24" rowspan="2" class="border-thick addheight">
-                        <strong><span class="font-small font-bold">$this->headingdate:</span></strong>
-                    </td>
-                </tr>
+                
                 <tr>
                     <td colspan="24"></td>
                     <td colspan="24"></td>
                 </tr>
             </table>
+
+
+
+                
 EOD;
+
         return $content;
     }
 
@@ -606,6 +655,7 @@ EOD;
         $doc->setPrintFooter(false);
         $doc->AddPage();
         $doc->writeHTML($this->pdf_example_data(), true, false, false, false, 'L');
+        
         $doc->write1DBarcode(7933528155335,
             'CODABAR',
             $x = '72',
@@ -837,16 +887,7 @@ EOD;
      * @return void
      */
     private function set_assignment_submission_statement() {
-        global $DB;
-
-        if ($record = $DB->get_record('config_plugins',
-                                      array('plugin' => 'assign', 'name' => 'submissionstatement'),
-                                      'value',
-                                      IGNORE_MISSING)) {
-            $this->submissionstatement = $record->value;
-        } else {
-            $this->submissionstatement = '';
-        }
+            $this->submissionstatement = get_string('statement', 'assignsubmission_physical');
     }
 
 
