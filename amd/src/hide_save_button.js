@@ -8,7 +8,7 @@ define(['jquery'], function($) {
  
     return {
         init: function() {
-            if ($( ".assignsubmission-physical-submission" ).length) {
+            if ($( ".assignsubmission-physical-buttons" )[0]) {
                 $("#id_submitbutton").css("display", "none");
             }
         }
