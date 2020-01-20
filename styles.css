@@ -68,7 +68,6 @@
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary {
     content: 'Get coversheet';
-    color: #fff !important;
     /*color: red;*/
     /*position: absolute;*/
     margin-left: -85px;
