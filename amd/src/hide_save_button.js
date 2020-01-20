@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 define(['jquery'], function($) {
- 
     return {
         init: function() {
             if ($( ".assignsubmission-physical-buttons" )[0]) {
@@ -14,4 +12,3 @@ define(['jquery'], function($) {
         }
     };
 });
-
