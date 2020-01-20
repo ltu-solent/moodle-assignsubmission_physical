@@ -7,7 +7,6 @@ define(['jquery'], function($) {
             } else {
                 document.getElementById("id_location").removeAttribute("required");
             }
-
         // SU_AMEND START - Assignment: Move element in focus beneath header
             document.addEventListener('invalid', function(e){
                $(e.target).addClass("invalid");
@@ -16,19 +15,12 @@ define(['jquery'], function($) {
             document.addEventListener('change', function(e){
                $(e.target).removeClass("invalid");
             }, true);
-                      
-        //SU_AMEND END
-
+        // SU_AMEND END
         }, false);
     }
-
     return {
         enhanceSettings: function() {
             load();
         }
     };
 });
-
-
-
-
