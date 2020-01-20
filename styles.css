@@ -68,6 +68,7 @@
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary {
     content: 'Get coversheet';
+    color: #fff !important;
     /*color: red;*/
     /*position: absolute;*/
     margin-left: -85px;
@@ -89,7 +90,7 @@
 
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn.btn-secondary:hover {
     /*Edit submissions button hover*/
-    color: #fff !important;
+    color: #425b6c!important;
     content: 'No this';
     
 }
