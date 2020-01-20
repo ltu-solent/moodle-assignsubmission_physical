@@ -8,7 +8,7 @@ define(['jquery'], function($) {
         init: function() {
             if ($( ".assignsubmission-physical-buttons" )[0]) {
                 $(".alert alert-info").css("display", "none");
-                $(".alert alert-info + div").css("clear", "both");
+                $(".alert-info + div").css("clear", "both");
             }
         }
     };
