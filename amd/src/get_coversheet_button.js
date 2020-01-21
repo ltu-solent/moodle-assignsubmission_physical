@@ -9,6 +9,7 @@ define(['jquery'], function($) {
             if ($( ".assign_physical" ).length) {
                 if ($(".btn.btn-secondary").length) {
                     $(".btn.btn-secondary").html('Get coversheet');
+                    $(".btn.btn-secondary").css("color", "!important");
                 }
             }
         }
