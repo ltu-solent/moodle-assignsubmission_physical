@@ -84,7 +84,7 @@
 .assign_physical ~ #page-wrapper .box.generalbox.submissionaction.py-3 .singlebutton .btn {
     /*This is the edit submissions button*/
     /*color: #425b6c !important;*/
-    width: 125px;
+    /*width: 125px;*/
     content: 'This';
     /*margin-top: -180px;*/
 }
