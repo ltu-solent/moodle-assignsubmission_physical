@@ -359,80 +359,100 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        // Extra barcodes at the bottom of the form
-        $this->style = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => '2, 2, 2, 2', 'phase' => 10, 'color' => array(169, 169, 169));
-        $this->pdf->Line(9, 172, 200, 172, $this->style);
+// SU_AMEND START - Physical: Anonymous fold line
+        // if ($this->isblindmarking == true) {
+        //   $this->style = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => '2, 2, 2, 2', 'phase' => 10, 'color' => array(169, 169, 169));
+        //   $this->pdf->Line(5, 125, 205, 125, $this->style);
+        //   $this->pdf->writeHTMLCell($w, $h, 135, 126, 'Fold bottom of page to here, if anonymous');
+        // }
+// SU_AMEND END
+// SU_AMEND START - Physical: Extra barcodes at the bottom of the form
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
             $x = '10',
-            $y = '180',
+            $y = '195',
             $w = '300',
             $h = '7',
             $xres = '',
             array('text' => true));
-        
         $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname); 
-       
+        if ($this->isblindmarking !== true) {        //
+          $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        }
+
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
             $x = '110',
-            $y = '180',
+            $y = '195',
             $w = '300',
             $h = '7',
             $xres = '',
             array('text' => true));
         $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        if ($this->isblindmarking !== true) {        //
+          $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        }
+
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
             $x = '10',
-            $y = '212',
+            $y = '225',
             $w = '300',
             $h = '7',
             $xres = '',
             array('text' => true));
         $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        if ($this->isblindmarking !== true) {        //
+          $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        }
+
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
             $x = '110',
-            $y = '212',
+            $y = '225',
             $w = '300',
             $h = '7',
             $xres = '',
             array('text' => true));
         $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
+        if ($this->isblindmarking !== true) {        //
+          $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        }
+
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
             $x = '10',
-            $y = '244',
+            $y = '255',
             $w = '300',
             $h = '7',
             $xres = '',
             array('text' => true));
         $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->details);
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+15, $this->studentname);        
+        if ($this->isblindmarking !== true) {        //
+          $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        }
+
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
             $x = '110',
-            $y = '244',
+            $y = '255',
             $w = '300',
             $h = '7',
             $xres = '',
             array('text' => true));
         $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);        
-        
+        if ($this->isblindmarking !== true) {        //
+          $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
+        }
+// SU_AMEND END
         $this->pdf->Output($this->studentname . '_' . $this->barcode . '.pdf');
-             
+
     }
 
     /**
@@ -591,26 +611,32 @@ class coversheet extends \pdf {
                 </tr>
 EOD;
 
-//         if ($this->isblindmarking === true) {
-//             $content .= <<<EOD
-//                 <tr>
-//                     <td colspan="48"></td>
-//                 </tr>
-//                 <tr>
-//                     <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
-//                         <span class=""><strong>$this->headingblindmarking</strong></span><br />
-//                         <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
-//                     </td>
-//                 </tr>
-//                 <tr>
-//                     <td colspan="48"></td>
-//                 </tr>
-//                 <tr>
-//                     <td colspan="48"></td>
-//                 </tr>
-// EOD;
-//         }
-
+        if ($this->isblindmarking == true) {
+            $content .= <<<EOD
+                <tr>
+                    <td colspan="48"></td>
+                </tr>
+                <tr>
+                    <td colspan="48" class="text-center font-blindmarking bottom-border-dashed">
+                        <span class=""><strong>$this->headingblindmarking</strong></span><br />
+                        <span class=""><strong>$this->headingblindmarkinginstruction</strong></span><br />
+                    </td>
+                </tr>
+EOD;
+        }
+// SU_AMEND START - Physical: Keep student ID above anonymous fold line
+        if ($this->isblindmarking == true) {
+          $content .=
+                  <<<EOD
+                  <tr>
+                    <td colspan="48" ></td>
+                  </tr>
+                  <tr>
+                    <td colspan="48" ></td>
+                  </tr>
+EOD;
+        }
+// SU_AMEND END
         $content .=
                 // <tr>
                 //     <td colspan="48" class="border-thin">
