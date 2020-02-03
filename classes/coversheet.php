@@ -343,7 +343,7 @@ class coversheet extends \pdf {
      * @return void
      */
     public function display_1d_pdf() {
-        
+
         $this->pdf->AddFont('helvetica');
         $this->pdf->SetFont('helvetica', '' ,'10', '');
         $this->pdf->setPrintHeader(false);
@@ -461,7 +461,7 @@ class coversheet extends \pdf {
      */
     private function generate_pdf_content() {
       global $CFG;
-      
+
         $content = <<<EOD
             <style>
                 .font-small {
@@ -606,7 +606,9 @@ class coversheet extends \pdf {
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
-                        <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->participantid
+                    <!-- SU_AMEND START: Physical: Display user ID number -->
+                        <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->username
+                    <!-- SU_AMEND END -->
                     </td>
                 </tr>
 EOD;
@@ -626,8 +628,7 @@ EOD;
         }
 // SU_AMEND START - Physical: Keep student ID above anonymous fold line
         if ($this->isblindmarking == true) {
-          $content .=
-                  <<<EOD
+          $content .=  <<<EOD
                   <tr>
                     <td colspan="48" ></td>
                   </tr>
@@ -655,7 +656,7 @@ EOD;
                 <tr>
                     <td colspan="48"></td>
                 </tr>
-                
+
                 <tr>
                     <td colspan="24"></td>
                     <td colspan="24"></td>
@@ -664,7 +665,7 @@ EOD;
 
 
 
-                
+
 EOD;
 
         return $content;
@@ -681,7 +682,7 @@ EOD;
         $doc->setPrintFooter(false);
         $doc->AddPage();
         $doc->writeHTML($this->pdf_example_data(), true, false, false, false, 'L');
-        
+
         $doc->write1DBarcode(7933528155335,
             'CODABAR',
             $x = '72',
