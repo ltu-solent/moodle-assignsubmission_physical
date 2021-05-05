@@ -56,13 +56,13 @@ class assign_submission_physical extends assign_submission_plugin {
     public function get_settings(MoodleQuickForm $mform) {
         global $DB, $PAGE;
 
-        // disable other types of submission if physical is selected
-        // SSU_AMEND START
+        
+// SSU_AMEND START - Assignment (physical): disable other types of submission if physical is selected
         $mform->disabledIf('assignsubmission_file_enabled', 'assignsubmission_physical_enabled', 'checked');
         $mform->disabledIf('assignsubmission_mahara_enabled', 'assignsubmission_physical_enabled', 'checked');
         $mform->disabledIf('assignsubmission_onlinetext_enabled', 'assignsubmission_physical_enabled', 'checked');
         $mform->disabledIf('assignsubmission_helixassign_enabled', 'assignsubmission_physical_enabled', 'checked');
-        // SSU_AMEND END
+// SSU_AMEND END
 
         $PAGE->requires->js_call_amd('assignsubmission_physical/index', 'enhanceSettings');
 

@@ -190,7 +190,7 @@ class printsubmission  {
                 $assignsubmission->userid = $student->id;
                 $assignsubmission->timemodified = $now;
                 $assignsubmission->timecreated = $now;
-// SU_AMEND START - Physical: Prevent draft submissions when printing barcodes
+// SU_AMEND START - Assignment (physical): Prevent draft submissions when printing barcodes
                 //$assignsubmission->status = ASSIGN_SUBMISSION_STATUS_DRAFT;
                 $assignsubmission->status = ASSIGN_SUBMISSION_STATUS_NEW;
 // SU_AMEND END

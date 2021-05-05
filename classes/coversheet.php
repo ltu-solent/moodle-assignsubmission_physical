@@ -359,14 +359,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-// SU_AMEND START - Physical: Anonymous fold line
-        // if ($this->isblindmarking == true) {
-        //   $this->style = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => '2, 2, 2, 2', 'phase' => 10, 'color' => array(169, 169, 169));
-        //   $this->pdf->Line(5, 125, 205, 125, $this->style);
-        //   $this->pdf->writeHTMLCell($w, $h, 135, 126, 'Fold bottom of page to here, if anonymous');
-        // }
-// SU_AMEND END
-// SU_AMEND START - Physical: Extra barcodes at the bottom of the form
+// SU_AMEND START - Assignment (physical): Extra barcodes at the bottom of the form
         $this->pdf->write1DBarcode(
             $this->barcode,
             'CODABAR',
@@ -376,7 +369,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->courseshortcode);
         if ($this->isblindmarking !== true) {        //
           $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
         }
@@ -390,7 +383,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->courseshortcode);
         if ($this->isblindmarking !== true) {        //
           $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
         }
@@ -404,7 +397,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->courseshortcode);
         if ($this->isblindmarking !== true) {        //
           $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
         }
@@ -418,7 +411,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->courseshortcode);
         if ($this->isblindmarking !== true) {        //
           $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
         }
@@ -432,7 +425,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->courseshortcode);
         if ($this->isblindmarking !== true) {        //
           $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
         }
@@ -446,7 +439,7 @@ class coversheet extends \pdf {
             $h = '7',
             $xres = '',
             array('text' => true));
-        $this->pdf->writeHTMLCell($w, $h, $x, $y+10, $this->details);
+        $this->pdf->writeHTMLCell($w, $h, $x, $y+11, $this->courseshortcode);
         if ($this->isblindmarking !== true) {        //
           $this->pdf->writeHTMLCell($w, $h, $x, $y+14, $this->studentname);
         }
@@ -606,7 +599,7 @@ class coversheet extends \pdf {
                 </tr>
                 <tr>
                     <td colspan="48" class="border-thin">
-                    <!-- SU_AMEND START: Physical: Display user ID number -->
+                    <!-- SU_AMEND START: Assignment (physical): Display user ID number -->
                         <strong><span class="font-small">$this->headingparticipant: </span></strong>$this->username
                     <!-- SU_AMEND END -->
                     </td>
@@ -626,7 +619,7 @@ EOD;
                 </tr>
 EOD;
         }
-// SU_AMEND START - Physical: Keep student ID above anonymous fold line
+// SU_AMEND START - Assignment (physical): Keep student ID above anonymous fold line
         if ($this->isblindmarking == true) {
           $content .=  <<<EOD
                   <tr>
