@@ -29,5 +29,5 @@ $plugin->version   = 2018092841;
 $plugin->requires  = 2017111300; // Moodle 3.4.
 $plugin->component = 'assignsubmission_physical';
 $plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = '1.0.0';
+$plugin->release   = '1.0.1';
 $plugin->dependencies = array('local_barcode' => ANY_VERSION);
