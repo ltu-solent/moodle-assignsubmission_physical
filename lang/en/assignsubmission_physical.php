@@ -84,6 +84,7 @@ $string['onduedate']              = ' (on the due date)';
 $string['participantheading']     = 'Student ID';
 $string['pdfimage']               = 'image of a pdf document';
 $string['physical'] = 'Physical';
+$string['physical:scan'] = 'Scan physical submission';
 $string['physicalsubmissionsettingsheader'] = 'Physical submission settings';
 $string['pluginname']             = 'Physical Submissions';
 $string['privacy:metadata']       = 'The physical submission plugin does not store any personal data.';
